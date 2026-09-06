@@ -1,11 +1,7 @@
-# Rudhra D Portfolio
+# Rudhra D Portfolio — Revision 19
 
-Personal portfolio website for Rudhra D.
-
-Live site:
-https://rudhra27.github.io/
-
-GitHub Pages:
-- Static `index.html` at repository root
-- `.nojekyll` included so GitHub Pages serves the site directly
-- Resume: `Rudhra_D_Resume.pdf`
+Fix:
+- Corrected the Personal Projects grid so **Department Meeting Scheduler** and **AUAS — Anna University Assistance and Support** are side-by-side on desktop.
+- Root cause fixed: AUAS was the last project and an old `:last-child` CSS rule forced it to span the row.
+- Added explicit desktop placement for DMS (left) and AUAS (right).
+- Kept the AI/LLM skills, animations, Last updated indicator, GitHub Actions timestamp workflow, QueryPilot featured styling, latest resume, and `.nojekyll`.
