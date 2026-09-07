@@ -203,15 +203,23 @@ nav a:hover:after{width:70%}
 @keyframes statusPulse{0%,100%{box-shadow:0 0 0 0 rgba(118,87,200,.25)}50%{box-shadow:0 0 0 7px rgba(118,87,200,0)}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.hero h1,.hero p,.hero .btn,.hero .links,.project.featured-project,.pulse-dot{animation:none}.reveal{opacity:1;transform:none}.project,.skill,.stat,.card{transition:none}}
 </style>
-<style id="revision19-project-layout">
-@media(min-width:901px){
-  .dms-project{grid-column:1}
-  .auas-project{grid-column:2}
+<style id="revision24-wide-project">
+/* Full-width project card (Revenue Reconciliation) — QueryPilot-style footprint,
+   without the FEATURED badge / float that stay unique to the featured card */
+.project.wide-project{
+  grid-column:1 / -1;
+  padding:34px;
+  background:linear-gradient(150deg,#ffffff 0%,#fbfaff 62%,#f6f2fd 100%);
+  border-color:#e3d9f3;
 }
-@media(max-width:600px){
-  .projects{grid-template-columns:1fr}
-  .dms-project,.auas-project{grid-column:auto}
-}
+.project.wide-project h3{font-size:1.7rem;letter-spacing:-.03em}
+.project.wide-project p{max-width:900px;font-size:1rem}
+.project.wide-project .impact{max-width:900px}
+.project.wide-project .project-icon{width:78px;height:78px;font-size:2.1rem}
+@media(max-width:600px){.project.wide-project{padding:26px}}
+
+/* Keep the Live Demo pill and GitHub link on the same baseline */
+.project-actions{align-items:center}
 </style>
 <style id="revision20-aesthetic">
 /* Revision 20 — refined aesthetic pass: typography, color, depth, rhythm */
@@ -713,10 +721,19 @@ body.cursor-on,body.cursor-on a,body.cursor-on button{cursor:none}
     <div class="tags"><span class="tag">PostgreSQL</span><span class="tag">SQL Optimization</span><span class="tag">Groq</span><span class="tag">LLM</span><span class="tag">Benchmarking</span><span class="tag">Sandbox Execution</span></div>
     <div class="project-actions"><a class="project-link demo" href="https://querypilot-92f7.onrender.com/" target="_blank" rel="noreferrer">🚀 Live Demo ↗</a></div>
    </article>
-   <article class="project reveal"><div class="project-icon">🏦</div><div class="project-number">02 · PRODUCTION</div><h3>Digital Loan Origination</h3><p>Architected the Oracle data model for a configurable 13-step digital loan journey with ~30 core tables; delivered verification handling for 12 types and implemented 8.</p><div class="impact">Impact: <strong>~40% reduction in applicant manual data entry</strong> through API-driven prefill; async processing for 5 third-party integrations using requestUUID, Redis and Feign timeouts.</div><div class="tags"><span class="tag">Spring Boot</span><span class="tag">Oracle</span><span class="tag">Redis</span><span class="tag">Feign</span><span class="tag">REST APIs</span></div></article>
-   <article class="project reveal"><div class="project-icon">👩‍💼</div><div class="project-number">03 · PRODUCTION</div><h3>Employee Retirement Management</h3><p>Backend engineering for retirement workflows, authentication, database performance and production reliability supporting 25K+ users; diagnosed authentication inconsistencies and automated diagnostics.</p><div class="impact">Impact: <strong>~60% query response-time improvement</strong> through EXPLAIN, benchmarking, indexing and targeted column selection; resolved N+1 queries and added AppSignal monitoring.</div><div class="tags"><span class="tag">Ruby on Rails</span><span class="tag">SQL</span><span class="tag">Redis</span><span class="tag">OAuth 2.0</span><span class="tag">AppSignal</span></div></article>
-   <article class="project reveal dms-project"><div class="project-icon">📅</div><div class="project-number">04 · PERSONAL PROJECT</div><h3>Department Meeting Scheduler</h3><p>Built a faculty meeting scheduling system using Java, Spring Boot and PostgreSQL, implementing conflict prevention, notifications and calendar management.</p><div class="impact">Impact: <strong>Reduced the meeting-scheduling hustle into simple clicks.</strong></div><div class="tags"><span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">PostgreSQL</span></div><a class="project-link" href="https://github.com/Rudhra27/DMS" target="_blank" rel="noreferrer">View on GitHub ↗</a></article>
-   <article class="project reveal auas-project"><div class="project-icon">🏫</div><div class="project-number">05 · ACADEMIC PROJECT</div><h3>AUAS — Anna University Assistance and Support</h3><p>A college grievance portal designed to simplify the process of submitting and tracking grievances within the university.</p><div class="impact">Impact: <strong>Streamlined grievance handling</strong> by automatically redirecting submitted grievances to the appropriate people.</div><div class="tags"><span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">PostgreSQL</span></div><a class="project-link" href="https://github.com/Rudhra27/AUAS_portal" target="_blank" rel="noreferrer">View on GitHub ↗</a></article>
+   <article class="project reveal wide-project">
+    <div class="project-icon">⚖️</div>
+    <div class="project-number">02 · PERSONAL PROJECT</div>
+    <h3>Revenue Reconciliation — Order-vs-Payment Matching Engine</h3>
+    <p>Reconciles an order export against a payment-processor export with a <strong>pure deterministic engine</strong> — normalised-key matching, a proportional money tolerance, and every mismatch classified into one of 10 discrepancy types. An interactive dashboard surfaces the <em>money at risk</em> with filterable drill-down; a downstream LLM explains each discrepancy in plain English but never influences a match.</p>
+    <div class="impact">Engineering principle: <strong>the deterministic engine decides; the AI only explains.</strong> Multi-tenant, Dockerised, 98 tests (integration-tested on real PostgreSQL via Testcontainers), live on Render + Neon.</div>
+    <div class="tags"><span class="tag">Java 21</span><span class="tag">Spring Boot 4</span><span class="tag">PostgreSQL</span><span class="tag">Liquibase</span><span class="tag">htmx</span><span class="tag">LLM</span><span class="tag">Multi-tenant</span><span class="tag">Docker</span></div>
+    <div class="project-actions"><a class="project-link demo" href="https://reconciler-jynw.onrender.com" target="_blank" rel="noreferrer">🚀 Live Demo ↗</a><a class="project-link" href="https://github.com/Rudhra27/revenue-reconciliation" target="_blank" rel="noreferrer">GitHub ↗</a></div>
+   </article>
+   <article class="project reveal"><div class="project-icon">🏦</div><div class="project-number">03 · PRODUCTION</div><h3>Digital Loan Origination</h3><p>Architected the Oracle data model for a configurable 13-step digital loan journey with ~30 core tables; delivered verification handling for 12 types and implemented 8.</p><div class="impact">Impact: <strong>~40% reduction in applicant manual data entry</strong> through API-driven prefill; async processing for 5 third-party integrations using requestUUID, Redis and Feign timeouts.</div><div class="tags"><span class="tag">Spring Boot</span><span class="tag">Oracle</span><span class="tag">Redis</span><span class="tag">Feign</span><span class="tag">REST APIs</span></div></article>
+   <article class="project reveal"><div class="project-icon">👩‍💼</div><div class="project-number">04 · PRODUCTION</div><h3>Employee Retirement Management</h3><p>Backend engineering for retirement workflows, authentication, database performance and production reliability supporting 25K+ users; diagnosed authentication inconsistencies and automated diagnostics.</p><div class="impact">Impact: <strong>~60% query response-time improvement</strong> through EXPLAIN, benchmarking, indexing and targeted column selection; resolved N+1 queries and added AppSignal monitoring.</div><div class="tags"><span class="tag">Ruby on Rails</span><span class="tag">SQL</span><span class="tag">Redis</span><span class="tag">OAuth 2.0</span><span class="tag">AppSignal</span></div></article>
+   <article class="project reveal"><div class="project-icon">📅</div><div class="project-number">05 · PERSONAL PROJECT</div><h3>Department Meeting Scheduler</h3><p>Built a faculty meeting scheduling system using Java, Spring Boot and PostgreSQL, implementing conflict prevention, notifications and calendar management.</p><div class="impact">Impact: <strong>Reduced the meeting-scheduling hustle into simple clicks.</strong></div><div class="tags"><span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">PostgreSQL</span></div><a class="project-link" href="https://github.com/Rudhra27/DMS" target="_blank" rel="noreferrer">View on GitHub ↗</a></article>
+   <article class="project reveal"><div class="project-icon">🏫</div><div class="project-number">06 · ACADEMIC PROJECT</div><h3>AUAS — Anna University Assistance and Support</h3><p>A college grievance portal designed to simplify the process of submitting and tracking grievances within the university.</p><div class="impact">Impact: <strong>Streamlined grievance handling</strong> by automatically redirecting submitted grievances to the appropriate people.</div><div class="tags"><span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">PostgreSQL</span></div><a class="project-link" href="https://github.com/Rudhra27/AUAS_portal" target="_blank" rel="noreferrer">View on GitHub ↗</a></article>
    
   </div>
  </div>
